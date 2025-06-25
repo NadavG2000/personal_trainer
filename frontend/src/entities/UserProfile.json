@@ -1,0 +1,69 @@
+{
+  "name": "UserProfile",
+  "type": "object",
+  "properties": {
+    "age": {
+      "type": "number"
+    },
+    "weight": {
+      "type": "number",
+      "description": "Weight in kilograms"
+    },
+    "height": {
+      "type": "number",
+      "description": "Height in centimeters"
+    },
+    "gender": {
+      "type": "string",
+      "enum": [
+        "male",
+        "female",
+        "other"
+      ]
+    },
+    "goal": {
+      "type": "string",
+      "enum": [
+        "lose_weight",
+        "build_muscle",
+        "improve_fitness",
+        "maintain_weight"
+      ],
+      "description": "The user's primary fitness goal"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced"
+      ]
+    },
+    "workout_days_per_week": {
+      "type": "number"
+    },
+    "dietary_preferences": {
+      "type": "string",
+      "description": "e.g., vegetarian, gluten-free, no nuts"
+    },
+    "current_workout_plan": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "JSON object representing the weekly workout plan"
+    },
+    "current_nutrition_plan": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "JSON object representing the weekly nutrition plan"
+    }
+  },
+  "required": [
+    "age",
+    "weight",
+    "height",
+    "gender",
+    "goal",
+    "experience_level",
+    "workout_days_per_week"
+  ]
+}

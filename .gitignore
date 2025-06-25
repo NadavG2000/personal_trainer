@@ -1,33 +1,68 @@
-# Virtual environment
+# --- Python backend ---
 
+# Virtual environments
 venv/
 
-# Python cache
-
-pycache/
+# Byte-compiled / optimized / DLL files
+__pycache__/
 *.py[cod]
+*.so
 
 # Distribution / packaging
-
 *.egg-info/
 build/
 dist/
 
+# Logs
+*.log
+
 # Environment variables
-
 .env
+.env.*
 
-# Model files
+# SQLite or local DBs
+*.sqlite3
+*.db
 
-models/
+# Cache
+.cache/
+.mypy_cache/
+.pytest_cache/
 
-# IDE files
+# --- Node.js frontend ---
 
+# Node modules
+frontend/node_modules/
+frontend/dist/
+
+# Vite cache
+frontend/.vite/
+
+# Environment variables
+frontend/.env
+frontend/.env.*
+
+# --- General / OS / IDE ---
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VSCode / JetBrains
 .vscode/
 .idea/
 
-# OS files
+# --- Model files ---
+models/
+*.onnx
+*.pkl
+*.joblib
 
-.DS_Store
-Thumbs.db
-
+# --- Temporary ---
+*.swp
+*.bak
+*.tmp

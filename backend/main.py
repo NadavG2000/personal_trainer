@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from orchestrator import create_custom_plan
 
-app = FastAPI() # initialization line
+app = FastAPI() 
 
 class UserProfile(BaseModel):
     age: int

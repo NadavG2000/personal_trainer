@@ -1,0 +1,39 @@
+{
+  "name": "WeeklyFeedback",
+  "type": "object",
+  "properties": {
+    "user_profile_id": {
+      "type": "string"
+    },
+    "week_ending_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "workout_difficulty": {
+      "type": "string",
+      "enum": [
+        "too_easy",
+        "just_right",
+        "too_hard"
+      ]
+    },
+    "enjoyment_rating": {
+      "type": "number",
+      "description": "Rating from 1 to 5"
+    },
+    "progress_notes": {
+      "type": "string",
+      "description": "User's notes on their progress, challenges, etc."
+    },
+    "current_weight": {
+      "type": "number",
+      "description": "User's weight at the end of the week"
+    }
+  },
+  "required": [
+    "user_profile_id",
+    "week_ending_date",
+    "workout_difficulty",
+    "enjoyment_rating"
+  ]
+}
