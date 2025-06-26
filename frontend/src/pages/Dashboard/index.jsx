@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { User, UserProfile, WeeklyFeedback } from '@/entities/all';
+import { User, UserProfile } from '@/entities/all';
 import { InvokeLLM } from '@/integrations/Core';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/utils';

@@ -6,12 +6,12 @@ import DashboardPage from "@/pages/Dashboard/index.jsx";
 
 export default function App() {
   return (
-    <Layout>
-      <Routes>
+    <Routes>
+      <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/onboarding" />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 }

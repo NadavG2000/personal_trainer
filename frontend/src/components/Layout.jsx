@@ -1,9 +1,9 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Outlet } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Dumbbell, User, BarChart, Bot } from "lucide-react";
 
-export default function Layout({ children, currentPageName }) {
+export default function Layout({ currentPageName }) {
   const location = useLocation();
 
   const navItems = [
@@ -37,18 +37,22 @@ export default function Layout({ children, currentPageName }) {
             ))}
           </nav>
           <div className="mt-auto bg-green-50 border border-green-200 rounded-lg p-4 text-center">
-              <Bot className="w-8 h-8 mx-auto text-green-500 mb-2"/>
-              <h4 className="font-semibold mb-1">AI Coach</h4>
-              <p className="text-xs text-gray-600">Your plan adapts to you. Provide feedback to improve it weekly.</p>
+            <Bot className="w-8 h-8 mx-auto text-green-500 mb-2" />
+            <h4 className="font-semibold mb-1">AI Coach</h4>
+            <p className="text-xs text-gray-600">
+              Your plan adapts to you. Provide feedback to improve it weekly.
+            </p>
           </div>
         </aside>
 
         {/* Main Content */}
         <main className="flex-1 min-w-0">
-          <div className="w-full h-full">{children}</div>
+          <div className="w-full h-full">
+            <Outlet />
+          </div>
         </main>
       </div>
-      
+
       {/* Mobile Bottom Nav */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around p-2">
         {navItems.map((item) => (
@@ -56,7 +60,7 @@ export default function Layout({ children, currentPageName }) {
             key={item.name}
             to={item.path}
             className={`flex flex-col items-center justify-center gap-1 w-full rounded-md py-1 transition-colors duration-200 ${
-              location.pathname === item.path ? 'text-green-600' : 'text-gray-400'
+              location.pathname === item.path ? "text-green-600" : "text-gray-400"
             }`}
           >
             <item.icon className="w-6 h-6" />
