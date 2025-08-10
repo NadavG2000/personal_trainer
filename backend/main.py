@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request, Query, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from pydantic import BaseModel, EmailStr, validator
+from pydantic import BaseModel, EmailStr, field_validator
 from orchestrator import create_custom_plan
 from db import save_user, get_user
 import logging
@@ -55,20 +55,23 @@ class UserRegistration(BaseModel):
     password: str
     name: str
 
-    @validator('email')
+    @field_validator('email')
+    @classmethod
     def validate_email(cls, v):
         if not validate_email(v):
             raise ValueError('Invalid email format')
         return v.lower().strip()
 
-    @validator('password')
+    @field_validator('password')
+    @classmethod
     def validate_password(cls, v):
         is_valid, error_msg = validate_password_strength(v)
         if not is_valid:
             raise ValueError(error_msg)
         return v
 
-    @validator('name')
+    @field_validator('name')
+    @classmethod
     def validate_name(cls, v):
         if not v or not v.strip():
             raise ValueError('Name is required')
@@ -82,7 +85,8 @@ class UserLogin(BaseModel):
     email: str
     password: str
 
-    @validator('email')
+    @field_validator('email')
+    @classmethod
     def validate_email(cls, v):
         if not validate_email(v):
             raise ValueError('Invalid email format')

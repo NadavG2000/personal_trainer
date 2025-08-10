@@ -4,6 +4,7 @@ import Layout from "@/components/Layout";
 import OnboardingPage from "@/pages/Onboarding";
 import MenuPage from "@/pages/Menu";
 import WorkoutPlanPage from "@/pages/WorkoutPlan";
+import ProgressPage from "@/pages/Progress";
 import ProfilePage from "@/pages/Profile";
 import LoginPage from "@/pages/Login";
 
@@ -75,6 +76,7 @@ export default function App() {
           <Route path="onboarding" element={<OnboardingPage />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="workout" element={<WorkoutPlanPage />} />
+          <Route path="progress" element={<ProgressPage />} />
           <Route path="profile" element={<ProfilePage />} />
         </Route>
       </Routes>

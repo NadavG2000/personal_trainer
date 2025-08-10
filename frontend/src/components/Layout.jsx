@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import { createPageUrl } from "@/utils";
-import { Dumbbell, User, BarChart, Bot, Utensils, Calendar } from "lucide-react";
+import { Dumbbell, User, BarChart, Bot, Utensils, Calendar, TrendingUp } from "lucide-react";
 import { useAuth } from "@/app";
 
 export default function Layout({ currentPageName }) {
@@ -11,6 +11,7 @@ export default function Layout({ currentPageName }) {
   const navItems = [
     { name: "Menu", icon: Utensils, path: createPageUrl("Menu") },
     { name: "Workout Plan", icon: Calendar, path: createPageUrl("Workout") },
+    { name: "Progress", icon: TrendingUp, path: createPageUrl("Progress") },
     { name: "Profile", icon: User, path: createPageUrl("Profile") },
   ];
 
