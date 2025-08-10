@@ -19,6 +19,7 @@ dist/
 # Environment variables
 .env
 .env.*
+*.csv
 
 # SQLite or local DBs
 *.sqlite3

@@ -22,6 +22,26 @@ function ProtectedRoute({ children }) {
   return children;
 }
 
+function RequireOnboarding({ children }) {
+  const { user } = useAuth();
+  const location = useLocation();
+  // Check onboarding completion from localStorage
+  const onboardingComplete = Boolean(localStorage.getItem("userProfileData"));
+
+  if (!user) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  // If not onboarding and not on onboarding page, redirect
+  if (!onboardingComplete && location.pathname !== "/onboarding") {
+    return <Navigate to="/onboarding" replace />;
+  }
+  // If onboarding complete and on onboarding page, redirect to menu
+  if (onboardingComplete && location.pathname === "/onboarding") {
+    return <Navigate to="/menu" replace />;
+  }
+  return children;
+}
+
 export default function App() {
   const [user, setUser] = useState(null);
 
@@ -46,12 +66,12 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route
           element={
-            <ProtectedRoute>
+            <RequireOnboarding>
               <Layout />
-            </ProtectedRoute>
+            </RequireOnboarding>
           }
         >
-          <Route index element={<Navigate to="/onboarding" />} />
+          <Route index element={<Navigate to="/menu" />} />
           <Route path="onboarding" element={<OnboardingPage />} />
           <Route path="menu" element={<MenuPage />} />
           <Route path="workout" element={<WorkoutPlanPage />} />

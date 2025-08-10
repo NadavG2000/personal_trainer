@@ -12,12 +12,14 @@ export default function MenuPage() {
       try {
         // Get user profile data from localStorage
         const profile = JSON.parse(localStorage.getItem("userProfileData") || "{}" );
-        // Fallbacks for required fields
+        const user = JSON.parse(localStorage.getItem("user") || "{}" );
+        // Prepare payload for backend
         const payload = {
-          age: Number(profile.age) || 25,
-          weight_kg: Number(profile.weight) || 70,
-          height_cm: Number(profile.height) || 170,
-          fitness_goal: profile.goal || "maintain_weight",
+          email: user.email,
+          age: Number(profile.age),
+          weight_kg: Number(profile.weight),
+          height_cm: Number(profile.height),
+          fitness_goal: profile.goal,
           dietary_preferences: profile.dietary_preferences
             ? profile.dietary_preferences.split(",").map(s => s.trim()).filter(Boolean)
             : [],
@@ -29,7 +31,8 @@ export default function MenuPage() {
         });
         if (!res.ok) throw new Error("Failed to fetch plan");
         const data = await res.json();
-        setPlan(data.nutrition.plan_text);
+        // The backend returns {workout: {...}, nutrition: {...}} or just the plan object
+        setPlan(data.nutrition?.plan_text || data.plan_text || "");
       } catch (err) {
         setError(err.message || "Unknown error");
       } finally {
